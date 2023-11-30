@@ -11,6 +11,6 @@
     - Chạy web (**py manage.py runserver**)
     - Đã hiển thị ra bản đồ vừa tạo được ở bước tiền xử lý
     - Hành động có thể thực hiện:
-      1. Click vào vị trí trên bản đồ để chọn điểm bắt đầu, điểm kết thúc (Chú ý chỉ được click đc 2 lần nên nếu thao tác lại thì load lại trang :) )
+      1. Click vào vị trí trên bản đồ để chọn điểm bắt đầu, điểm kết thúc (Chú ý chỉ được click đc 2 lần nên nếu thao tác lại thì load lại trang )
       2. Trỏ tới các vị trí (Đường, icon,...) để xem thông tin
       3. Ấn Search để chuyển tới trang tìm kiếm (đang làm)
