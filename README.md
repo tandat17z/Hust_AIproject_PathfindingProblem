@@ -1,0 +1,12 @@
+# Hust_AIproject_PathfindingProblem
+- Cài đặt một số thư viện cần thiết: folium/chardet/bs4/django... (pip install tên_thư_viện)
+- Quy trình:
+  - Tiền xử lý dữ liệu (cd preprocess_data)
+    - Chạy file main.py (py main.py)
+    - Kết quả: trả ra file map.html -> Bản đồ hiển thị các con đường trong khu vực cần tìm kiếm
+    - file map.html được chuyển tới website để chạy trên nền web
+  - Thuật toán: ( in algorithm)
+    - (đang mô hình)
+  - Chạy web ( cd website)
+    - Chạy web ( py manage.py runserver)
+    - Đã hiển thị ra bản đồ vừa tạo được ở bước tiền xử lý
