@@ -1,12 +1,28 @@
+import re
+from bs4 import BeautifulSoup
+
 from django.shortcuts import render
 from django.http import HttpResponse
 
 import sys
 import os
-algorithm_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+# os.path.dirname(__file__)
+algorithm_path = os.path.join(os.getcwd(), '..')
 sys.path.append(algorithm_path)
 
-from algorithm import bfs
+from algorithm import bfs, get_data
+from shapely.geometry import Point, LineString
+
+def get_map_name(path):
+    with open(path, "r") as file:
+        content = file.read()
+
+    soup = BeautifulSoup(content, "html.parser")
+
+    script_tag = soup.find('script', string=lambda text: 'function newMarker' in str(text))
+    pt = re.compile(r'addTo\(([^\)]*)\)')
+    match = pt.search(script_tag.string)
+    return match.group(1)
 
 # Create your views here.
 def mapView(request):
@@ -17,12 +33,17 @@ def mapView(request):
 
 def searchView(request, searchText):
     x1, y1, x2, y2 = [float(i) for i in searchText.split('_') if i != '' ]
-    text = bfs.search()
+    start = Point(x1, y1)
+    target = Point(x2, y2)
+    file_path = path = os.path.join(os.getcwd(), '..', 'preprocess_data', 'geojson', 'export.geojson')
+    gdf = get_data.get_road_data(file_path)
+
+    path = os.path.join(os.getcwd(), 'app', 'templates', 'map0.html')
     context = {
-        'x1': x1,
-        'y1': y1,
-        'x2': x2,
-        'y2': y2,
-        'text': text
+        'route': get_data.bfs(gdf, start, target),
+        'start': [y1, x1], 
+        'target': [y2, x2],
+        # 'text': text,
+        'map_name': get_map_name(path)
     }
-    return render(request, 'findWay.html', context)
+    return render(request, 'search.html', context)

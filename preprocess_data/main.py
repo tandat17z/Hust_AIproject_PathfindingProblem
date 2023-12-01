@@ -5,8 +5,7 @@ import chardet
 from bs4 import BeautifulSoup
 import re
 
-def BuildMap(path):
-    geojson_file = 'geojson/export.geojson'
+def buildMap(path, geojson_file):
     with open(geojson_file, 'rb') as f:
         result = chardet.detect(f.read())
     with io.open(geojson_file, 'r', encoding=result['encoding']) as f:
@@ -30,7 +29,7 @@ def BuildMap(path):
     ).add_to(map)
 
     map.add_child(
-        folium.ClickForMarker('<b>Lat:</b> ${lat} <br /><b>Lon:</b> ${lng}')
+        folium.ClickForMarker('<b>Lng:</b> ${lng} <br /> <b>Lat:</b> ${lat}')
     )
 
     map.save(path)
@@ -43,19 +42,17 @@ function newMarker(e){
     if( num < 2){
         num += 1;
 '''
-
-NEW_CODE2 = 'toFixed(8)'
-
+NEW_CODE2 = 'toFixed(7)'
 NEW_CODE3 = '''
 if( num == 1){
-    new_mark.bindTooltip(`<b>Start</b> <br /> <b>Lat:</b> ${lat} <br /><b>Lng:</b> ${lng}`);
+    new_mark.bindTooltip(`<b>Start</b> <br /> <lng:</b> ${lng} <br /><b>lat:</b> ${lat}`);
 }
 else{
-    new_mark.bindTooltip(`<b>End</b> <br /> <b>Lat:</b> ${lat} <br /><b>Lng:</b> ${lng}`);
+    new_mark.bindTooltip(`<b>End</b> <br /> <b>lng:</b> $lngt} <br /><b>lat:</b> ${lat}`);
 }
 
 var searchLink = document.getElementById("search");
-searchLink.href += ('_' +encodeURIComponent(lat) + '_' + encodeURIComponent(lng));
+searchLink.href += ('_' +encodeURIComponent(lng) + '_' + encodeURIComponent(lat));
 }
 };
 '''
@@ -91,10 +88,10 @@ def editHtml(path):
     with open(path, "w") as file:
         file.write(str(soup))
 
-
 #---------------main-----------------
-path = "../website/app/templates/map.html"
 # path = "map.html"
-BuildMap(path)
+geojson_file = 'geojson/export.geojson'
+path = "../website/app/templates/map.html"
+buildMap(path, geojson_file)
 editHtml(path)
 
