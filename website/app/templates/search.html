@@ -1,6 +1,46 @@
 {% extends "map0.html" %}
 {% block result %}
 <script>
+    var poly_line_fd6ff87e6fc47867e8728a37cc3a4c81 = L.polyline(
+        {{start_route}},
+        {
+            "bubblingMouseEvents": true, 
+            "color": "red", 
+            "dashArray": [5, 5], 
+            "dashOffset": null, 
+            "fill": false, 
+            "fillColor": "red", 
+            "fillOpacity": 0.2, 
+            "fillRule": "evenodd", 
+            "lineCap": "round", 
+            "lineJoin": "round", 
+            "noClip": false, 
+            "opacity": 1.0, 
+            "smoothFactor": 1.0, 
+            "stroke": true, 
+            "weight": 3}
+    ).addTo({{map_name}});
+
+    var poly_line_fd6ff87e6fc47867e8728a37cc3a4c82 = L.polyline(
+        {{end_route}},
+        {
+            "bubblingMouseEvents": true, 
+            "color": "red", 
+            "dashArray": [5, 5], 
+            "dashOffset": null, 
+            "fill": false, 
+            "fillColor": "red", 
+            "fillOpacity": 0.2, 
+            "fillRule": "evenodd", 
+            "lineCap": "round", 
+            "lineJoin": "round", 
+            "noClip": false, 
+            "opacity": 1.0, 
+            "smoothFactor": 1.0, 
+            "stroke": true, 
+            "weight": 3}
+    ).addTo({{map_name}});
+
     var poly_line_fd6ff87e6fc47867e8728a37cc3a4c88 = L.polyline(
         {{route}},
         {
@@ -18,14 +58,16 @@
             "opacity": 1.0, 
             "smoothFactor": 1.0, 
             "stroke": true, 
-            "weight": 7}
+            "weight": 5}
     ).addTo({{map_name}});
+
+    //Đường chim bay từ start tới target
     var poly_line_fd6ff87e6fc47867e8728a37cc3a4c89 = L.polyline(
         [{{start}}, {{target}}],
         {
             "bubblingMouseEvents": true, 
             "color": "black", 
-            "dashArray": [10, 10], 
+            "dashArray": [5, 5], 
             "dashOffset": null, 
             "fill": false, 
             "fillColor": "red", 
@@ -39,11 +81,13 @@
             "stroke": true, 
             "weight": 2}
     ).addTo({{map_name}});
+
+    //Hiển thị icon start, end
     var marker_ac27d8833d08a09c8f2e834aa2ef2e31 = L.marker(
         {{start}},
                 {}
             ).addTo({{map_name}});
-    var marker_ac27d8833d08a09c8f2e834aa2ef2e31 = L.marker(
+    var marker_ac27d8833d08a09c8f2e834aa2ef2e32 = L.marker(
         {{target}},
         {}
     ).addTo({{map_name}});

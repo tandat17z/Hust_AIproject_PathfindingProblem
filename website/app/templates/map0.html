@@ -47,7 +47,7 @@
                         }
                     </style>
 </head>
-<body><p style="text-align: center;"><a href="" id="search">Seach</a></p>
+<body><p style="text-align: center;"><a href="\" id="search">Quay lại</a></p>
 <div class="folium-map" id="map_a3254e009a18d034f06e99c1f5e3b8d2"></div>
 </body>
 <script>
@@ -144,31 +144,6 @@
     
                 geo_json_142b9020508e49b765dfba838c5b6f42.addTo(map_a3254e009a18d034f06e99c1f5e3b8d2);
     
-                
-var num = 0;
-function newMarker(e){
-    if( num < 2){
-        num += 1;
-
-                    var new_mark = L.marker().setLatLng(e.latlng).addTo(map_a3254e009a18d034f06e99c1f5e3b8d2);
-                    
-                    new_mark.on('dblclick', function(e){ map_a3254e009a18d034f06e99c1f5e3b8d2.removeLayer(e.target)})
-                    var lat = e.latlng.lat.toFixed(7),
-                       lng = e.latlng.lng.toFixed(7);
-                    
-if( num == 1){
-    new_mark.bindTooltip(`<b>Start</b> <br /> <b>Lat:</b> ${lat} <br /><b>Lng:</b> ${lng}`);
-}
-else{
-    new_mark.bindTooltip(`<b>End</b> <br /> <b>Lat:</b> ${lat} <br /><b>Lng:</b> ${lng}`);
-}
-
-var searchLink = document.getElementById("search");
-searchLink.href += ('_' +encodeURIComponent(lat) + '_' + encodeURIComponent(lng));
-}
-};
-
-                map_a3254e009a18d034f06e99c1f5e3b8d2.on('click', newMarker);
 </script>
 
 {% block result %} {% endblock %}
