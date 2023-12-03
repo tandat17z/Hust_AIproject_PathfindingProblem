@@ -34,7 +34,6 @@ def buildMap(path, geojson_file):
 
     map.save(path)
 
-
 # Đoạn mã JavaScript mới để thay thế
 NEW_CODE1 = '''
 var num = 0;
@@ -90,7 +89,7 @@ def editHtml(path):
 
 #---------------main-----------------
 # path = "map.html"
-geojson_file = 'geojson/export.geojson'
+geojson_file = 'geojson/mapTrucBach.geojson'
 path = "../website/app/templates/map.html"
 buildMap(path, geojson_file)
 editHtml(path)

@@ -10,7 +10,7 @@ import os
 algorithm_path = os.path.join(os.getcwd(), '..')
 sys.path.append(algorithm_path)
 
-from algorithm import bfs, get_data
+from algorithm import bfs, function
 from shapely.geometry import Point, LineString
 
 
@@ -41,8 +41,8 @@ def searchView(request, searchText):
     target = Point(x2, y2)
 
     file_path = path = os.path.join(os.getcwd(), '..', 'preprocess_data', 'geojson', 'export.geojson')
-    gdf = get_data.get_road_data(file_path)
-    start_route, route, end_route = get_data.bfs(gdf, start, target)
+    gdf = function.get_road_data(file_path)
+    start_route, route, end_route = bfs.search(gdf, start, target)
 
     path = os.path.join(os.getcwd(), 'app', 'templates', 'map0.html')
     
