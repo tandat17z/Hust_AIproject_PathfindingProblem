@@ -10,7 +10,7 @@ import os
 algorithm_path = os.path.join(os.getcwd(), '..')
 sys.path.append(algorithm_path)
 
-from algorithm import bfs, function
+from algorithm import bfs, A_star, function
 from shapely.geometry import Point, LineString
 
 
@@ -28,11 +28,12 @@ def get_map_name(path):
     return match.group(1)
 
 # Create your views here.
-def mapView(request):
+def homeView(request):
+    path = os.path.join(os.getcwd(), 'app', 'templates', 'base', 'map.html')
     context = {
-
+        'map_name': get_map_name(path) 
     }
-    return render(request, 'map.html', context)
+    return render(request, 'home.html', context)
 
 # Chạy trang tìm kiếm: Tìm đường đi giữa 2 điểm
 def searchView(request, searchText):
@@ -40,11 +41,13 @@ def searchView(request, searchText):
     start = Point(x1, y1)
     target = Point(x2, y2)
 
-    file_path = path = os.path.join(os.getcwd(), '..', 'preprocess_data', 'geojson', 'export.geojson')
+    file_name = 'mapTrucBach.geojson'
+    file_path = path = os.path.join(os.getcwd(), '..', 'preprocess_data', 'geojson', file_name)
     gdf = function.get_road_data(file_path)
-    start_route, route, end_route = bfs.search(gdf, start, target)
+    # start_route, route, end_route = bfs.search(gdf, start, target)
+    start_route, route, end_route = A_star.search(gdf, start, target)
 
-    path = os.path.join(os.getcwd(), 'app', 'templates', 'map0.html')
+    path = os.path.join(os.getcwd(), 'app', 'templates', 'base', 'map.html')
     
     context = {
         'start_route': start_route,
@@ -52,7 +55,6 @@ def searchView(request, searchText):
         'end_route':end_route,
         'start': [y1, x1], 
         'target': [y2, x2],
-        # 'text': text,
         'map_name': get_map_name(path)
     }
     return render(request, 'search.html', context)

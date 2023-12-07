@@ -1,0 +1,34 @@
+{% extends "base/map.html" %}
+
+{% block link %}
+<p style="text-align: center;"><a href="" id="link">search</a></p>
+{% endblock link %}
+
+{% block script %}
+<script>
+    var num = 0;
+    function newMarker(e){
+        if( num < 2){
+            num += 1;
+
+            var new_mark = L.marker().setLatLng(e.latlng).addTo({{ map_name}});
+            
+            new_mark.on('dblclick', function(e){ {{ map_name}}.removeLayer(e.target)})
+            var lat = e.latlng.lat.toFixed(7),
+                lng = e.latlng.lng.toFixed(7);
+                        
+            if( num == 1){
+                new_mark.bindTooltip(`<b>Start</b> <br /> <b>lng:</b> ${lng} <br /><b>lat:</b> ${lat}`);
+            }
+            else{
+                new_mark.bindTooltip(`<b>End</b> <br /> <b>lng:</b> ${lng} <br /><b>lat:</b> ${lat}`);
+            }
+
+            var searchLink = document.getElementById("link");
+            searchLink.href += ('_' +encodeURIComponent(lng) + '_' + encodeURIComponent(lat));
+        }
+    };
+
+    {{ map_name}}.on('click', newMarker);
+</script>         
+{% endblock script %}

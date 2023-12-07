@@ -1,5 +1,9 @@
-{% extends "map0.html" %}
-{% block result %}
+{% extends "base/map.html" %}
+{% block link %}
+<p style="text-align: center;"><a href="\" id="link">Quay lại</a></p>
+{% endblock link %}
+
+{% block script %}
 <script>
     var poly_line_fd6ff87e6fc47867e8728a37cc3a4c81 = L.polyline(
         {{start_route}},
@@ -92,4 +96,4 @@
         {}
     ).addTo({{map_name}});
 </script>
-{% endblock result %}
+{% endblock script %}
