@@ -1,4 +1,5 @@
 {% extends "base/map.html" %}
+
 {% block link %}
     {% for message in messages %}
         <div id="alert-message" js-message="{{message}}"></div>
@@ -7,8 +8,9 @@
         var message = document.getElementById('alert-message').getAttribute('js-message');
         alert(message);
     </script>
-    <p style="text-align: center;"><a href="\" id="link">Quay lại</a></p>
-    {% endblock link %}
+    <p style="text-align: center;"> Thời gian tìm kiếm là: {{time_search}} giây. <a href="\" id="link">Quay lại</a></p>
+{% endblock link %}
+
 {% block script %}
 <script>
     var poly_line_fd6ff87e6fc47867e8728a37cc3a4c81 = L.polyline(
@@ -97,9 +99,25 @@
         {{start}},
                 {}
             ).addTo({{map_name}});
-    var marker_ac27d8833d08a09c8f2e834aa2ef2e32 = L.marker(
+
+    var popup_a89faa55267f8d7c1cda57045f0c38c8 = L.popup({"maxWidth": "100%"});
+    var html_3dd62ef762cc51784fa01b4257084cd7 = $(`<div id="html_3dd62ef762cc51784fa01b4257084cd7" style="width: 100.0%; height: 100.0%; font-weight: bold;">Start</div>`)[0];
+    popup_a89faa55267f8d7c1cda57045f0c38c8.setContent(html_3dd62ef762cc51784fa01b4257084cd7);
+        
+    marker_ac27d8833d08a09c8f2e834aa2ef2e31.bindPopup(popup_a89faa55267f8d7c1cda57045f0c38c8)
+
+
+    var marker_f631cbc23f7840d69dfdf1b998d75eaa = L.marker(
         {{target}},
         {}
     ).addTo({{map_name}});
+    
+
+    var popup_a89faa55267f8d7c1cda57045f0c38c7 = L.popup({"maxWidth": "100%"});
+    var html_3dd62ef762cc51784fa01b4257084cd6 = $(`<div id="html_3dd62ef762cc51784fa01b4257084cd6" style="width: 100.0%; height: 100.0%; font-weight: bold;">Target</div>`)[0];
+    popup_a89faa55267f8d7c1cda57045f0c38c7.setContent(html_3dd62ef762cc51784fa01b4257084cd6);
+        
+    marker_f631cbc23f7840d69dfdf1b998d75eaa.bindPopup(popup_a89faa55267f8d7c1cda57045f0c38c7)
+    ;
 </script>
 {% endblock script %}

@@ -16,7 +16,7 @@ def buildMap(path, geojson_file):
     folium.GeoJson(
         data,
         name="Trucbach-Badinh-Hanoi-Vietnam",
-        tooltip = folium.GeoJsonTooltip(fields=["name", "highway", 'lanes']),
+        tooltip = folium.GeoJsonTooltip(fields=["@id","name", "highway"]),
         style_function=lambda x: {
             # "fillColor": "#ffff00",
             "color": "rgba(0, 0, 0, 0)",

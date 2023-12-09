@@ -2,10 +2,13 @@ from .func import *
 import queue
 import heapq
 
-def search(gdf, start, target):
+def search(gdf, oneway, start, target):
     # Xử lý vị trí bất kì của start ---> trả ra điểm nằm trên các đường
-    new_start, start1, start2 = get_nearest_point(gdf, start)
-    new_target, target1, target2 = get_nearest_point(gdf, target)
+    new_start, start1, start2 = get_nearest_point(gdf, oneway, start, type='start')
+    new_target, target1, target2 = get_nearest_point(gdf, oneway, target, type='end')
+
+    targets = [target1, ]
+    if target2 != None: targets.append(target2)
 
     fringe = [start1, ]
     closed = []
@@ -13,28 +16,25 @@ def search(gdf, start, target):
         new_start: start,
         start1: new_start,
     }
+    g = {
+        start1: start.distance(new_start) + new_start.distance(start1),
+    }
+
+    # Khởi tạo hàng đợi ưu tiên
+    pq = queue.PriorityQueue() # ban đầu có 2 điểm start1, start2
+    pq.put( (g[start1] + target.distance(start1), start1) )
     if start2 != None: 
         fringe.append(start2)
         parent[start2] = new_start
-
-    targets = [target1, ]
-    if target2 != None: targets.append(target2)
-
-    g = {
-        start1: start.distance(new_start) + new_start.distance(start1),
-        start2: start.distance(new_start) + new_start.distance(start2),
-    }
-
-    pq = queue.PriorityQueue() # ban đầu có 2 điểm start1, start2
-    pq.put( (g[start1] + target.distance(start1), start1) )
-    pq.put( (g[start2] + target.distance(start2), start2) )
+        g[start2] = start.distance(new_start) + new_start.distance(start2)
+        pq.put( (g[start2] + target.distance(start2), start2) )
 
     while True:
         f, point = pq.get() 
         fringe.remove(point)
         closed.append(point)
 
-        for child in get_children(gdf, point):
+        for child in get_children(gdf, point, oneway):
             if child in targets:
                 parent[child] = point
                 # truy vết lại đường đi --------------------

@@ -1,10 +1,14 @@
 from .func import *
 
-def search(gdf, start, target):
+# Chưa fix lại theo chỉnh sửa trong func ----------------------------------------------------------
+# get_children + get_nearest_point
+# Xử lý liên quan tới đường 1 chiều
+
+def search(gdf, oneway, start, target):
     # Xử lý vị trí bất kì của start ---> trả ra điểm nằm trên các đường
-    new_start, start1, start2 = get_nearest_point(gdf, start)
+    new_start, start1, start2 = get_nearest_point(gdf, oneway, start, type='start' )
     print(start1, start2)
-    new_target, target1, target2 = get_nearest_point(gdf, target)
+    new_target, target1, target2 = get_nearest_point(gdf, oneway, target, type='end')
     print(target1, target2)
 
     fringe = [start1, ]

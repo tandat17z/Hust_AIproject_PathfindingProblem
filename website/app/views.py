@@ -43,22 +43,25 @@ def searchView(request, searchText):
     start = Point(x1, y1)
     target = Point(x2, y2)
 
-    data_file = 'mapTrucBach.geojson'
-    data_path = os.path.join(os.getcwd(), '..', 'preprocess_data', 'geojson', data_file)
+    file = 'mapTrucBach.geojson'
+    data_path = os.path.join(os.getcwd(), '..', 'preprocess_data', 'geojson', file)
     html_path = os.path.join(os.getcwd(), 'app', 'templates', 'base', 'map.html')
 
     gdf = func.get_road_data(data_path)
-
+    oneway = func.get_oneway_id(data_path)
     # start_route, route, end_route = bfs.search(gdf, start, target)
-    start_route, route, end_route = A_star.search(gdf, start, target)
+    start_route, route, end_route = A_star.search(gdf, oneway, start, target)
     t_end = datetime.now()
-    messages.success(request, f'Tìm kiếm thành công trong {t_end - t_start}')
+
+    time_search = round(t_end.timestamp() - t_start.timestamp(), 5)
+    messages.success(request, f'Tìm kiếm thành công trong {time_search} s')
     context = {
         'start_route': start_route,
         'route':route,
         'end_route':end_route,
         'start': [y1, x1], 
         'target': [y2, x2],
+        'time_search': time_search,
         'map_name': get_map_name(html_path)
     }
     return render(request, 'search.html', context)
