@@ -59,7 +59,10 @@ def get_children(gdf, point):
             coords = geometry_value.coords
             list_point = [Point(coord) for coord in coords]
             idx = list_point.index(point)
-            if idx > 0: children.append(list_point[idx-1])
-            if idx < len(list_point) - 1: children.append(list_point[idx+1])
+            if idx > 0 : 
+                children.append(list_point[idx-1])
+
+            if idx < len(list_point) - 1: 
+                children.append(list_point[idx+1])
     return children
     

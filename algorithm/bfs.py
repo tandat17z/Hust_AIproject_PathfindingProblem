@@ -1,4 +1,4 @@
-from .function import *
+from .func import *
 
 def search(gdf, start, target):
     # Xử lý vị trí bất kì của start ---> trả ra điểm nằm trên các đường
