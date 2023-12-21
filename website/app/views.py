@@ -38,19 +38,12 @@ def homeView(request):
 
 # Chạy trang tìm kiếm: Tìm đường đi giữa 2 điểm
 def searchView(request, searchText):
-    t_start = datetime.now()
     x1, y1, x2, y2 = [float(i) for i in searchText.split('_')]
     start = Point(x1, y1)
     target = Point(x2, y2)
 
-    file = 'mapTrucBach.geojson'
-    data_path = os.path.join(os.getcwd(), '..', 'preprocess_data', 'geojson', file)
-    html_path = os.path.join(os.getcwd(), 'app', 'templates', 'base', 'map.html')
-
-    gdf = func.get_road_data(data_path)
-    oneway = func.get_oneway_id(data_path)
-    # start_route, route, end_route = bfs.search(gdf, start, target)
-    start_route, route, end_route = A_star.search(gdf, oneway, start, target)
+    t_start = datetime.now()
+    start_route, route, end_route = A_star.search(start, target)
     t_end = datetime.now()
 
     time_search = round(t_end.timestamp() - t_start.timestamp(), 5)
@@ -62,6 +55,6 @@ def searchView(request, searchText):
         'start': [y1, x1], 
         'target': [y2, x2],
         'time_search': time_search,
-        'map_name': get_map_name(html_path)
+        'map_name': get_map_name(os.path.join(os.getcwd(), 'app', 'templates', 'base', 'map.html'))
     }
     return render(request, 'search.html', context)

@@ -51,7 +51,8 @@ def addBlockToHtml(path):
 
 #---------------main-----------------
 # path = "map.html"
-geojson_file = 'geojson/mapTrucBach.geojson'
+file = 'TrucBachMap.geojson'
+geojson_file = 'geojson/' + file
 path = "../website/app/templates/base/map.html"
 buildMap(path, geojson_file)
 addBlockToHtml(path)

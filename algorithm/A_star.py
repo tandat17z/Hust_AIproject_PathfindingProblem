@@ -1,11 +1,10 @@
-from .func import *
+from .func0 import *
 import queue
-import heapq
 
-def search(gdf, oneway, start, target):
+def search(start, target):
     # Xử lý vị trí bất kì của start ---> trả ra điểm nằm trên các đường
-    new_start, start1, start2 = get_nearest_point(gdf, oneway, start, type='start')
-    new_target, target1, target2 = get_nearest_point(gdf, oneway, target, type='end')
+    new_start, start1, start2 = get_nearest_point(start, type='start')
+    new_target, target1, target2 = get_nearest_point(target, type='end')
 
     targets = [target1, ]
     if target2 != None: targets.append(target2)
@@ -29,12 +28,12 @@ def search(gdf, oneway, start, target):
         g[start2] = start.distance(new_start) + new_start.distance(start2)
         pq.put( (g[start2] + target.distance(start2), start2) )
 
-    while True:
+    while pq.empty() == False:
         f, point = pq.get() 
         fringe.remove(point)
         closed.append(point)
 
-        for child in get_children(gdf, point, oneway):
+        for child in get_children(point,):
             if child in targets:
                 parent[child] = point
                 # truy vết lại đường đi --------------------
