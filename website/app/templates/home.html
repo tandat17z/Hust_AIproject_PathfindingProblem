@@ -10,10 +10,14 @@
     function newMarker(e){
         if( num < 2){
             num += 1;
+            var markerColor = (num === 1) ? 'blue' : 'red';
+            var new_mark;
+            new_mark = L.marker().setLatLng(e.latlng).addTo({{ map_name}});
 
-            var new_mark = L.marker().setLatLng(e.latlng).addTo({{ map_name}});
-            
-            new_mark.on('dblclick', function(e){ {{ map_name}}.removeLayer(e.target)})
+            new_mark.on('dblclick', function(e){ 
+                {{ map_name}}.removeLayer(e.target)
+            })
+
             var lat = e.latlng.lat.toFixed(7),
                 lng = e.latlng.lng.toFixed(7);
                         
@@ -21,7 +25,7 @@
                 new_mark.bindTooltip(`<b>Start</b> <br /> <b>lng:</b> ${lng} <br /><b>lat:</b> ${lat}`);
             }
             else{
-                new_mark.bindTooltip(`<b>End</b> <br /> <b>lng:</b> ${lng} <br /><b>lat:</b> ${lat}`);
+                new_mark.bindTooltip(`<b>Target</b> <br /> <b>lng:</b> ${lng} <br /><b>lat:</b> ${lat}`);
             }
 
             var searchLink = document.getElementById("link");

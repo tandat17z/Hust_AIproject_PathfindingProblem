@@ -112,12 +112,14 @@
         {}
     ).addTo({{map_name}});
     
-
     var popup_a89faa55267f8d7c1cda57045f0c38c7 = L.popup({"maxWidth": "100%"});
     var html_3dd62ef762cc51784fa01b4257084cd6 = $(`<div id="html_3dd62ef762cc51784fa01b4257084cd6" style="width: 100.0%; height: 100.0%; font-weight: bold;">Target</div>`)[0];
     popup_a89faa55267f8d7c1cda57045f0c38c7.setContent(html_3dd62ef762cc51784fa01b4257084cd6);
         
-    marker_f631cbc23f7840d69dfdf1b998d75eaa.bindPopup(popup_a89faa55267f8d7c1cda57045f0c38c7)
-    ;
+    marker_f631cbc23f7840d69dfdf1b998d75eaa.bindPopup(popup_a89faa55267f8d7c1cda57045f0c38c7);
+
+    // Mở popup ngay sau khi thêm marker vào bản đồ
+    marker_ac27d8833d08a09c8f2e834aa2ef2e31.openPopup();
+    marker_f631cbc23f7840d69dfdf1b998d75eaa.openPopup();
 </script>
 {% endblock script %}

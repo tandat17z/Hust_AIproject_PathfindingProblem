@@ -11,7 +11,7 @@ import os
 algorithm_path = os.path.join(os.getcwd(), '..')
 sys.path.append(algorithm_path)
 
-from algorithm import bfs, A_star, func
+from algorithm import A_star
 from shapely.geometry import Point, LineString
 from datetime import datetime
 
