@@ -1,8 +1,8 @@
 # Hust_AIproject_PathfindingProblem
-- [Cài đặt](#Cài-đặt)
+- [Cài đặt](#I.-Cài-đặt)
 - [Quy trình](#Quy-trình)
 - [Cách sử dụng](#Cách-sử-dụng)
-## Cài đặt
+## I. Cài đặt
 **1. Clone dự án từ GitHub:**
   ```bash
   git clone https://github.com/tandat17z/Hust_AIproject_PathfindingProblem.git
@@ -19,7 +19,7 @@ Dự án cần sử dụng đến nhiều thư viện như: folium/shapely/geopa
 Tất cả chúng đầu được nếu cụ thể trong requirements.txt.<br>
 **HOÀN THÀNH CÀI ĐẶT MÔI TRƯỜNG CHO DỰ ÁN** sau khi thực hiện xong lệnh trên.
 
-## Quy trình
+## II. Quy trình
 ### 1. Tiền xử lý dữ liệu:
   - Tới thư mục preprocess_data
   ```bash
@@ -42,7 +42,7 @@ py main.py
 ### 3. Tạo website:
   - Sử dụng framework Django để phát triển web nhanh chóng bằng python. Sử dụng file html đã tạo ở phần tiền xử lý để dùng làm giao diện cho web. Modules thuật toán sẽ được tính hợp để sử dụng tìm kiếm đường đi tại hai điểm bất kì khi sử dụng web.
 
-## Quy trình sử dụng:
+## III. Quy trình sử dụng:
   - Tới thư mục làm việc chứa website
   ```bash
   cd ../website
