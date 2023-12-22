@@ -1,12 +1,8 @@
 import geopandas as gpd
 import json
-from shapely.geometry import Point, LineString
+import os
+from shapely.geometry import Point
 
-def get_road_data(file_path):
-    gdf = gpd.read_file(file_path)
-    return gdf
-
-# Lấy dữ liệu đường 1 chiều
 def get_oneway_id(file_path):
     oneway_id = []
     with open(file_path, 'r', encoding='utf-8' ) as file:
@@ -16,22 +12,23 @@ def get_oneway_id(file_path):
         for way in data_geojson['features']:
             if 'properties' in way and 'oneway' in way['properties'] and way['properties']['oneway'] == 'yes':
                 oneway_id.append(way['properties']['@id'])
-
     return oneway_id
 
+file = 'TrucBachMap.geojson'
+file_path = os.path.join(os.getcwd(), '..', 'preprocess_data', 'data', file)
 
-# đường gần point nhất
-def get_nearest_road(gdf, point):
+gdf = gpd.read_file(file_path)
+oneway_id = get_oneway_id(file_path)
+
+
+# Trả ra những điểm H, A, B nằm trên đường gần point nhất, type (start or target)
+def get_nearest_point(point, type):
+    # Trên đường MN
+    # H là chân đường vuông góc từ point tới MN
+    # 2 điểm A, B thuộc các node (được lưu trong data) thuộc MN gần H nhất
+    # A, B đối xứng qua H
     gdf['distance'] = gdf['geometry'].distance(point)
     nearest_road = gdf.loc[gdf['distance'].idxmin()]
-    return nearest_road
-
-def get_nearest_point(gdf, oneway, point, type):
-    # Trên đoạn thẳng MN (M, N là mút)
-    # H là chân đường vuông góc từ point tới MN
-    # Cần tìm 2 điểm A, B thuộc các node trên đường gần H nhất
-    # A, B đối xứng qua H
-    nearest_road = get_nearest_road(gdf, point)
     line = nearest_road['geometry']
     point_H = line.interpolate(line.project(point))
     way_id = nearest_road['id']
@@ -71,12 +68,12 @@ def get_nearest_point(gdf, oneway, point, type):
         point_B = None
 
     # Xử lý trường hợp là đường 1 chiều ( HA, HB không thể đi ngược chiều)
-    if way_id in oneway and k_b != -1:
+    if way_id in oneway_id and k_b != -1:
         if type == 'start':
             if k_b > k_a:
                 point_A = point_B
             point_B = None
-        elif type == "end":
+        elif type == "target":
             if k_b < k_a:
                 point_A = point_B
             point_B = None
@@ -84,7 +81,7 @@ def get_nearest_point(gdf, oneway, point, type):
     return point_H, point_A, point_B
 
 
-def get_children(gdf, point, oneway):
+def get_children(point):
     gdf['distance'] = gdf['geometry'].distance(point)
     lines = gdf.loc[gdf['distance'] == 0]
     children = []
@@ -95,10 +92,9 @@ def get_children(gdf, point, oneway):
             list_point = [Point(coord) for coord in coords]
             idx = list_point.index(point)
 
-            if idx > 0 and row.id not in oneway: # Nếu không phải đường 1 chiều
+            if idx > 0 and row.id not in oneway_id: # Nếu không phải đường 1 chiều
                 children.append(list_point[idx-1])
 
             if idx < len(list_point) - 1: 
                 children.append(list_point[idx+1])
     return children
-    

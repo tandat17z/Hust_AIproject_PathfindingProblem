@@ -3,7 +3,6 @@ import json
 import io
 import chardet
 from bs4 import BeautifulSoup
-import re
 
 def buildMap(path, geojson_file):
     with open(geojson_file, 'rb') as f:
@@ -49,11 +48,11 @@ def addBlockToHtml(path):
         file.write(str(soup))
 
 
-#---------------main-----------------
-# path = "map.html"
-file = 'TrucBachMap.geojson'
-geojson_file = 'geojson/' + file
-path = "../website/app/templates/base/map.html"
-buildMap(path, geojson_file)
-addBlockToHtml(path)
 
+#---------------main-----------------
+file = 'TrucBachMap.geojson'
+geojson_file = 'data/' + file
+path = "../website/app/templates/base/map.html" # Nơi lưu trữ dữ liệu file html của website
+
+buildMap(path, geojson_file) # Tạo file html dùng cho web từ file dữ liệu
+addBlockToHtml(path) # Thêm một số tính năng
