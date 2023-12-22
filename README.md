@@ -1,7 +1,7 @@
 # Hust_AIproject_PathfindingProblem
-- [Cài đặt](#cài-đặt)
-- [Quy trình](#quy-trình)
-- [Cách sử dụng](#cách-sử-dụng)
+- [Cài đặt](#gear-cài-đặt)
+- [Quy trình](#airplane-quy-trình)
+- [Cách sử dụng](#anchor-cách-sử-dụng)
 ## :gear: Cài đặt
 **1. Clone dự án từ GitHub:**
   ```bash
