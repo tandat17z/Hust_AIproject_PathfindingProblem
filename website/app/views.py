@@ -28,6 +28,7 @@ def get_map_name(path):
     match = pt.search(script_tag.string)
     return match.group(1)
 
+
 # Trang ban đầu để chọn 2 điểm 
 def homeView(request):
     path = os.path.join(os.getcwd(), 'app', 'templates', 'base', 'map.html')
