@@ -1,5 +1,6 @@
 # Hust_AIproject_PathfindingProblem
-- Cài đặt một số thư viện cần thiết: folium/chardet/bs4/django... (**pip install tên_thư_viện**)
+**- Yêu cầu:**
+-  một số thư viện cần thiết: folium/chardet/bs4/django... (**pip install tên_thư_viện**)
 - Quy trình:
   - Tiền xử lý dữ liệu (**cd preprocess_data**)
     - Chạy file main.py (**py main.py**)
