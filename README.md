@@ -3,6 +3,18 @@
 - [Quy trình](#Quy-trình)
 - [Cách sử dụng](#Cách-sử-dụng)
 ## Cài đặt
+**1. Clone dự án từ GitHub:**
+  ```bash
+  git clone https://github.com/tandat17z/Hust_AIproject_PathfindingProblem.git
+  ```
+Thay đổi tới thư mục làm việc của project. Ví dụ:
+  ```bash
+  cd D:\\Hust_AIproject_PathfindingProblem
+  ```
+**2. Cài đặt các thư viện cần thiết:**
+  ```bash
+  pip install -r requirements.txt
+  ```
 -  một số thư viện cần thiết: folium/chardet/bs4/django... (**pip install tên_thư_viện**)
 - Quy trình:
   - Tiền xử lý dữ liệu (**cd preprocess_data**)
