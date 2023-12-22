@@ -1,5 +1,5 @@
 # Hust_AIproject_PathfindingProblem
-- [Cài đặt](#Cài-đặt)
+- [Cài đặt](#:gerar-Cài-đặt)
 - [Quy trình](#Quy-trình)
 - [Cách sử dụng](#Cách-sử-dụng)
 ## ⚙️ Cài đặt
