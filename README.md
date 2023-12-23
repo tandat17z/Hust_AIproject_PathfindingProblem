@@ -3,6 +3,8 @@
 - [Quy trình](#airplane-quy-trình)
 - [Cách sử dụng](#anchor-cách-sử-dụng)
 ## :gear: Cài đặt
+(Đảm bảo rằng bạn đã thiết lập môi trường để chạy python và git)
+
 **1. Clone dự án từ GitHub:**
   ```bash
   git clone https://github.com/tandat17z/Hust_AIproject_PathfindingProblem.git
@@ -11,12 +13,13 @@ Tới thư mục làm việc của dự án. Ví dụ:
   ```bash
   cd D:\Hust_AIproject_PathfindingProblem
   ```
-**2. Cài đặt các thư viện cần thiết:**
+**2. Cài đặt môi trường :**
+
+Dự án cần sử dụng đến nhiều thư viện như:  `folium`, `shapely`, `geopandas`, `django`, .... cụ thể trong file **requirements.txt**<br>
+**HOÀN THÀNH CÀI ĐẶT MÔI TRƯỜNG CHO DỰ ÁN** sau khi thực hiện xong câu lệnh sau.
   ```bash
   pip install -r requirements.txt
   ```
-Dự án cần sử dụng đến nhiều thư viện như:  `folium`, `shapely`, `geopandas`, `django`, .... cụ thể trong file **requirements.txt**<br>
-**HOÀN THÀNH CÀI ĐẶT MÔI TRƯỜNG CHO DỰ ÁN** sau khi thực hiện xong lệnh trên.
 
 ## :airplane: Quy trình
 ### 1. Tiền xử lý dữ liệu:
@@ -32,7 +35,7 @@ py main.py
 ![image](https://github.com/tandat17z/Hust_AIproject_PathfindingProblem/assets/126872123/a1233cc0-94c3-48f2-9e6d-270f6a328abc)
 
 ### 2. Thuật toán:
-Thuật toán tìm đường đi mà mình sử dụng là **thuật toán A***. Với thuật toán này sẽ luôn cho kết quả tối ưu trong dự án. Những hàm liên quan phục vụ cho thuật toán được lưu trong folder **algorithm**:
+Thuật toán tìm đường đi mà mình sử dụng là **thuật toán A***. Với thuật toán này sẽ luôn cho kết quả tối ưu trong mô hình của dự án. Những hàm liên quan phục vụ cho thuật toán được lưu trong folder **algorithm**:
   - module **func.py**:
     - `get_oneway_id(file) -> list` # Trả ra danh sách id những con đường 1 chiều
     - `get_nearest_point(point, type) -> pointH, pointA, pointB`
@@ -58,5 +61,5 @@ Sử dụng framework `Django` để phát triển web nhanh chóng bằng `pyth
       - Click lần lượt vào vị trí bất kì trên bản đồ để chọn điểm bắt đầu (**start**), điểm kết thúc (**target**) (Chú ý chỉ được click đc 2 lần theo đúng thứ tự nên nếu muốn thao tác lại thì  hãy load lại trang)
       - Có thể trỏ tới các con đường, icon để xem một vài thông tin của chúng.
       - Ấn **Search** để chuyển tới trang tìm kiếm (hãy chờ một chút để thuật toán tìm đường chạy)
-      - Quan sát đường đi tìm đường tìm được (đường màu đỏ) và thời gian tìm kiếm, xong ấn **Quay lại** để trở về trang ban đầu.
+      - Quan sát đường đi tìm được (đường màu đỏ) và thời gian tìm kiếm, xong ấn **Quay lại** để trở về trang ban đầu.
 
