@@ -17,7 +17,7 @@ def search(start, target):
     }
     
     g = {
-        start1: start.distance(new_start) + new_start.distance(start1),
+        start1: new_start.distance(start1), # start.distance(new_start) + new_start.distance(start1),
     }
 
     # Khởi tạo hàng đợi ưu tiên
@@ -27,7 +27,7 @@ def search(start, target):
     if start2 != None: 
         fringe.append(start2)
         parent[start2] = new_start
-        g[start2] = start.distance(new_start) + new_start.distance(start2)
+        g[start2] = new_start.distance(start2) # start.distance(new_start) + new_start.distance(start2)
         pq.put( (g[start2] + target.distance(start2), start2) )
 
     while pq.empty() == False:
@@ -61,3 +61,5 @@ def search(start, target):
                     pq.put((g[child] + target.distance(child), child))
                     fringe.append(child)
                     parent[child] = point
+                    
+    return [], [], []
