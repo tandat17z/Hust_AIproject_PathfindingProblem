@@ -3,6 +3,8 @@
 - [Quy trình](#airplane-quy-trình)
 - [Cách sử dụng](#anchor-cách-sử-dụng)
 ## :gear: Cài đặt
+(Đảm bảo rằng bạn đã thiết lập môi trường để chạy python và git)
+
 **1. Clone dự án từ GitHub:**
   ```bash
   git clone https://github.com/tandat17z/Hust_AIproject_PathfindingProblem.git
@@ -11,12 +13,13 @@ Tới thư mục làm việc của dự án. Ví dụ:
   ```bash
   cd D:\Hust_AIproject_PathfindingProblem
   ```
-**2. Cài đặt các thư viện cần thiết:**
+**2. Cài đặt môi trường :**
+
+Dự án cần sử dụng đến nhiều thư viện như:  `folium`, `shapely`, `geopandas`, `django`, .... cụ thể trong file **requirements.txt**<br>
+**HOÀN THÀNH CÀI ĐẶT MÔI TRƯỜNG CHO DỰ ÁN** sau khi thực hiện xong câu lệnh sau.
   ```bash
   pip install -r requirements.txt
   ```
-Dự án cần sử dụng đến nhiều thư viện như:  `folium`, `shapely`, `geopandas`, `django`, .... cụ thể trong file **requirements.txt**<br>
-**HOÀN THÀNH CÀI ĐẶT MÔI TRƯỜNG CHO DỰ ÁN** sau khi thực hiện xong lệnh trên.
 
 ## :airplane: Quy trình
 ### 1. Tiền xử lý dữ liệu:
