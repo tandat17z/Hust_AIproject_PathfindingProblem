@@ -1,0 +1,51 @@
+Input:
+	- start: điểm xuất phát
+	- target: điểm đích
+Output: Danh sách các tọa độ các nút theo thứ tự từ start đến target là đường đi ngắn nhất
+
+
+procedure search(start, target):
+    xác định new_start, start1, start2, target1, target2, new_target
+
+    khởi tạo fringe là danh sách chứa các nút chờ được duyệt
+    khởi tạo closed là danh sách chứa các nút đã được duyệt
+    khởi tạo parent lưu trữ cha của các nút
+    khởi tạo g lưu trữ khoảng cách từ start đến các nút
+
+    fringe.add(start1)
+    fringe.add(start2)
+
+    parent[new_start] = start
+    parent[start1] = new_start
+    parent[start2] = new_start
+
+    g[start1] = distance(start, new_start) + distance(new_start, start1)
+    g[start2] = distance(start,new_start) + distance(new_start, start2)
+
+    khởi tạo hàng đợi ưu tiên pq với khóa f = g[nodei] + h[nodei] //h[nodei] = distance(nodei, target)
+    pq.push( (g[start1] + h[start1], start1) )
+    pq.push( (g[start2] + h[start1], start2) )
+
+    while pq not empty:
+        point = nút có khóa nhỏ nhất trong pq
+        xóa phần tử có khóa nhỏ nhất trong pq
+        fringe.remove(point)
+        closed.add(point)
+
+        if point = new_target then:
+            truy vết và trả về đường đi
+
+        if point in [target1, target2] then:
+            child = new_target
+            g[child] = g[point] + distance(point, child)
+            pq.push((g[child] + h[child], child))
+            fringe.add(child)
+            parent[child] = point
+
+        for child in get_children(point):
+            if child not in closed then:
+                if (child not in fringe) or (g[child] > (g[point] + distance(point, child))):
+                    g[child] = g[point] + distance(point, child)
+                    pq.push( (g[child] + h[child], child) )
+                    fringe.add(child)
+                    parent[child] = point
