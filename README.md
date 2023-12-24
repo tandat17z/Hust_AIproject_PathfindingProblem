@@ -1,7 +1,10 @@
 # Hust_AIproject_PathfindingProblem
+- [Giới thiệu](#angel-giới-thiệu)
 - [Cài đặt](#gear-cài-đặt)
 - [Quy trình](#airplane-quy-trình)
 - [Cách sử dụng](#anchor-cách-sử-dụng)
+## :angel: Giới thiệu
+Đây là một project nhỏ trong quá trình học môn **Nhập môn trí tuệ nhân tạo** tại [Hust](https://hust.edu.vn/en/). Project sẽ giải quyết bài toán tìm đường đi tại khu vực Phường Trúc Bạch - Hà Nội bằng việc áp dụng cách biểu diễn bài toán, các phương pháp tìm kiếm đã học.
 ## :gear: Cài đặt
 (Đảm bảo rằng bạn đã thiết lập môi trường để chạy python và git)
 
